@@ -77,7 +77,7 @@ A powerful WordPress plugin that adds a beautiful, mobile-friendly enhanced date
 | `min-date` | Minimum selectable date | `today`, `+1 week`, `2025-01-01` |
 | `max-date` | Maximum selectable date | `+1 year`, `2025-12-31` |
 | `exclude-days` | Days to exclude (0=Sun, 6=Sat) | `0,6` or `saturday,sunday` |
-| `exclude-dates` | Specific dates to exclude | `2025-01-01,2025-12-25` |
+| `exclude-dates` | Specific dates to exclude (dd-mm-yyyy format) | `01-01-2025,25-12-2025` |
 | `date-format` | Display format | `Y-m-d`, `m/d/Y`, `d/m/Y` |
 | `linked-to` | Start date field name | `start-date` |
 | `placeholder` | Placeholder text | `Select a date...` |

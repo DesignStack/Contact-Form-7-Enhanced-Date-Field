@@ -89,14 +89,14 @@ For detailed documentation, examples, and support, visit [DesignStack](https://d
 [date-enhanced your-date exclude-days:"0,6"]
 ```
 
-**Exclude specific dates:**
+**Exclude specific dates (use dd-mm-yyyy format):**
 ```
-[date-enhanced your-date exclude-dates:"2025-01-01,2025-12-25"]
+[date-enhanced your-date exclude-dates:"01-01-2025,25-12-2025"]
 ```
 
-**Exclude date range:**
+**Exclude date range (use dd-mm-yyyy format):**
 ```
-[date-enhanced your-date exclude-dates:"2025-01-01 to 2025-01-05"]
+[date-enhanced your-date exclude-dates:"01-01-2025 to 05-01-2025"]
 ```
 
 **Custom date format:**
@@ -115,7 +115,7 @@ For detailed documentation, examples, and support, visit [DesignStack](https://d
 * **min-date** - Minimum selectable date (e.g., "today", "+1 week", "2025-01-01")
 * **max-date** - Maximum selectable date (e.g., "+1 year", "2025-12-31")
 * **exclude-days** - Comma-separated list of days to exclude (0=Sunday, 6=Saturday)
-* **exclude-dates** - Comma-separated dates or ranges to exclude
+* **exclude-dates** - Comma-separated dates or ranges to exclude (use dd-mm-yyyy format: "01-01-2025,25-12-2025")
 * **date-format** - Display format (Y-m-d, m/d/Y, d/m/Y, etc.)
 * **linked-to** - Name of the start date field (for end date fields)
 * **placeholder** - Placeholder text for the input field
@@ -205,11 +205,11 @@ Use `exclude-days:"0,6"` where 0 is Sunday and 6 is Saturday.
 
 = Can I exclude specific dates? =
 
-Yes! Use `exclude-dates:"2025-01-01,2025-12-25"` to exclude specific dates.
+Yes! Use `exclude-dates:"01-01-2025,25-12-2025"` to exclude specific dates. Note: Use dd-mm-yyyy format.
 
 = Can I exclude a range of dates? =
 
-Yes! Use `exclude-dates:"2025-01-01 to 2025-01-05"` to exclude a date range.
+Yes! Use `exclude-dates:"01-01-2025 to 05-01-2025"` to exclude a date range. Note: Use dd-mm-yyyy format.
 
 = What date formats are supported? =
 
