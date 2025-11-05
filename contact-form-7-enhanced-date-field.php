@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('CF7_EDF_VERSION', '1.0.0');
+define('CF7_EDF_VERSION', '1.0.1');
 define('CF7_EDF_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('CF7_EDF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CF7_EDF_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -116,8 +116,7 @@ class CF7_Enhanced_Date_Field {
 
         $validation_error = wpcf7_get_validation_error($tag->name);
 
-        $class = wpcf7_form_controls_class($tag->type);
-        $class .= ' wpcf7-date-enhanced';
+        $class = wpcf7_form_controls_class($tag->type, 'wpcf7-text wpcf7-date-enhanced');
 
         if ($validation_error) {
             $class .= ' wpcf7-not-valid';
@@ -129,12 +128,15 @@ class CF7_Enhanced_Date_Field {
         $atts['type'] = 'text';
         $atts['name'] = $tag->name;
         $atts['readonly'] = 'readonly';
+        $atts['autocomplete'] = 'off';
 
+        // Handle placeholder
         $value = (string) reset($tag->values);
         if ($tag->has_option('placeholder') || $value !== '') {
             $atts['placeholder'] = $value;
         }
 
+        // Handle required field
         if ($tag->is_required()) {
             $atts['aria-required'] = 'true';
             $atts['required'] = 'required';
@@ -144,7 +146,7 @@ class CF7_Enhanced_Date_Field {
 
         // Get configuration options
         $config = $this->get_tag_config($tag);
-        $atts['data-config'] = esc_attr(json_encode($config));
+        $atts['data-config'] = esc_attr(wp_json_encode($config));
 
         $atts = wpcf7_format_atts($atts);
 

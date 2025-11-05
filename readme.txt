@@ -4,7 +4,7 @@ Tags: contact form 7, date picker, date field, form, contact
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -246,6 +246,15 @@ Yes, the plugin is compatible with AJAX form submissions and dynamic forms.
 
 == Changelog ==
 
+= 1.0.1 =
+* Fixed: Field not displaying on frontend
+* Improved: Form tag handler with better class handling
+* Improved: JavaScript initialization with error checking and debug logging
+* Added: Troubleshooting guide (TROUBLESHOOTING.md)
+* Added: Autocomplete="off" attribute to prevent browser autofill
+* Fixed: Better compatibility with various CF7 configurations
+* Updated: Documentation with correct shortcode syntax examples
+
 = 1.0.0 =
 * Initial release
 * Beautiful, mobile-friendly date picker
@@ -260,6 +269,9 @@ Yes, the plugin is compatible with AJAX form submissions and dynamic forms.
 * AJAX form compatibility
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Important bug fix: Resolves issue where date field was not displaying on frontend. Update recommended for all users.
 
 = 1.0.0 =
 Initial release of Contact Form 7 Enhanced Date Field

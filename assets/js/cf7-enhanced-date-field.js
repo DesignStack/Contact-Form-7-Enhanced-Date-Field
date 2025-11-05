@@ -13,6 +13,12 @@
      * Initialize date pickers
      */
     function initDatePickers() {
+        // Check if flatpickr is loaded
+        if (typeof flatpickr === 'undefined') {
+            console.error('CF7 Enhanced Date: flatpickr library not loaded');
+            return;
+        }
+
         $('.wpcf7-date-enhanced').each(function() {
             var $input = $(this);
             var fieldName = $input.attr('name');
@@ -25,6 +31,11 @@
             // Get configuration from data attribute
             var config = $input.data('config') || {};
 
+            // Debug log
+            if (window.console && console.log) {
+                console.log('CF7 Enhanced Date: Initializing field ' + fieldName, config);
+            }
+
             // Prepare flatpickr configuration
             var flatpickrConfig = {
                 dateFormat: config.dateFormat || 'Y-m-d',
@@ -35,7 +46,6 @@
                 clickOpens: true,
                 // Make it mobile-friendly
                 disableMobile: false,
-                // Add clear button
                 // Add change listener for validation
                 onChange: function(selectedDates, dateStr, instance) {
                     // Trigger change event for CF7 validation
