@@ -3,7 +3,7 @@
  * Plugin Name: Contact Form 7 Enhanced Date Field
  * Plugin URI: https://designstack.co.uk
  * Description: Adds a powerful, mobile-friendly enhanced date field to Contact Form 7 with advanced restrictions and customization options.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: DesignStack
  * Author URI: https://designstack.co.uk
  * License: GPL v2 or later
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('CF7_EDF_VERSION', '1.0.1');
+define('CF7_EDF_VERSION', '1.0.2');
 define('CF7_EDF_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('CF7_EDF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CF7_EDF_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -49,7 +49,7 @@ class CF7_Enhanced_Date_Field {
      * Constructor
      */
     private function __construct() {
-        add_action('plugins_loaded', array($this, 'init'));
+        add_action('wpcf7_init', array($this, 'init'));
     }
 
     /**
@@ -66,7 +66,7 @@ class CF7_Enhanced_Date_Field {
         load_plugin_textdomain('cf7-enhanced-date-field', false, dirname(CF7_EDF_PLUGIN_BASENAME) . '/languages');
 
         // Register form tag
-        add_action('wpcf7_init', array($this, 'register_form_tag'));
+        $this->register_form_tag();
 
         // Enqueue scripts and styles
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));

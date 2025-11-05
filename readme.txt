@@ -4,7 +4,7 @@ Tags: contact form 7, date picker, date field, form, contact
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -246,6 +246,12 @@ Yes, the plugin is compatible with AJAX form submissions and dynamic forms.
 
 == Changelog ==
 
+= 1.0.2 =
+* CRITICAL FIX: Resolved form tag registration issue causing shortcodes to display as raw text
+* Fixed: Changed hook from 'plugins_loaded' to 'wpcf7_init' for proper registration timing
+* Fixed: Direct call to register_form_tag() instead of nested action hooks
+* This version is essential for the plugin to work correctly
+
 = 1.0.1 =
 * Fixed: Field not displaying on frontend
 * Improved: Form tag handler with better class handling
@@ -269,6 +275,9 @@ Yes, the plugin is compatible with AJAX form submissions and dynamic forms.
 * AJAX form compatibility
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+CRITICAL UPDATE: Fixes form tag registration. Plugin will not work without this update. Shortcodes were displaying as raw text in version 1.0.1. Update immediately.
 
 = 1.0.1 =
 Important bug fix: Resolves issue where date field was not displaying on frontend. Update recommended for all users.
