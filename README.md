@@ -2,7 +2,7 @@
 
 A powerful WordPress plugin that adds a beautiful, mobile-friendly enhanced date field to Contact Form 7 with advanced restrictions and customization options.
 
-![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)
 ![WordPress](https://img.shields.io/badge/wordpress-5.0%2B-blue.svg)
 ![PHP](https://img.shields.io/badge/php-7.2%2B-purple.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-green.svg)
@@ -178,6 +178,12 @@ For support, please visit:
 - [WordPress.org Support Forums](https://wordpress.org/support/plugin/contact-form-7-enhanced-date-field)
 
 ## Changelog
+
+### 1.0.3
+- **CRITICAL FIX**: Corrected initialization hook sequence - now using plugins_loaded with priority 20
+- Fixed: Form tag registration now properly hooks to wpcf7_init after CF7 is confirmed loaded
+- This fixes the issue from 1.0.2 where form tags still weren't registering
+- Tested and verified working initialization pattern
 
 ### 1.0.2
 - **CRITICAL FIX**: Resolved form tag registration issue causing shortcodes to display as raw text
