@@ -231,7 +231,7 @@ class CF7_Enhanced_Date_Field {
             }
         }
 
-        // Exclude date ranges
+        // Exclude date ranges (expects dd-mm-yyyy format)
         if ($tag->has_option('exclude-dates')) {
             $exclude_dates = $tag->get_option('exclude-dates', '', true);
             if ($exclude_dates) {
@@ -240,14 +240,23 @@ class CF7_Enhanced_Date_Field {
                     $config['disable'] = array();
                 }
                 foreach ($dates as $date) {
-                    // Support both single dates and ranges (e.g., "2025-01-01" or "2025-01-01 to 2025-01-05")
+                    // Support both single dates and ranges (e.g., "01-12-2025" or "01-12-2025 to 05-12-2025")
                     if (strpos($date, ' to ') !== false) {
                         $range = array_map('trim', explode(' to ', $date));
                         if (count($range) === 2) {
-                            $config['disable'][] = array('from' => $range[0], 'to' => $range[1]);
+                            // Convert from dd-mm-yyyy to Y-m-d format
+                            $from = $this->convert_date_to_flatpickr_format($range[0]);
+                            $to = $this->convert_date_to_flatpickr_format($range[1]);
+                            if ($from && $to) {
+                                $config['disable'][] = array('from' => $from, 'to' => $to);
+                            }
                         }
                     } else {
-                        $config['disable'][] = $date;
+                        // Convert single date from dd-mm-yyyy to Y-m-d format
+                        $converted = $this->convert_date_to_flatpickr_format($date);
+                        if ($converted) {
+                            $config['disable'][] = $converted;
+                        }
                     }
                 }
             }
@@ -307,6 +316,20 @@ class CF7_Enhanced_Date_Field {
     }
 
     /**
+     * Convert date from dd-mm-yyyy format to Y-m-d format for flatpickr
+     */
+    private function convert_date_to_flatpickr_format($date) {
+        // Check if date is in dd-mm-yyyy format
+        if (preg_match('/^(\d{2})-(\d{2})-(\d{4})$/', $date, $matches)) {
+            // Convert dd-mm-yyyy to Y-m-d
+            return $matches[3] . '-' . $matches[2] . '-' . $matches[1];
+        }
+
+        // If it's already in another format or invalid, return as is
+        return $date;
+    }
+
+    /**
      * Validate date field
      */
     public function validate_date_field($result, $tag) {
@@ -344,11 +367,6 @@ class CF7_Enhanced_Date_Field {
      * Enqueue scripts and styles
      */
     public function enqueue_scripts() {
-        // Only enqueue on pages with contact forms
-        if (!function_exists('wpcf7_contact_form')) {
-            return;
-        }
-
         // Flatpickr CSS from CDN
         wp_enqueue_style(
             'flatpickr',
